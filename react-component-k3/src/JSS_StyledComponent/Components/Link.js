@@ -9,7 +9,7 @@ import React from 'react'
 // let {className,children} = props;
 
 export const Link = ({ className, children, ...restProps }) => (
-    <a className={className}  >
+    <a className={className} {...restProps}  >
         {children}
     </a>
 )
