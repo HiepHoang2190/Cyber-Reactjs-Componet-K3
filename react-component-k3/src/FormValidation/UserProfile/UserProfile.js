@@ -1,6 +1,22 @@
 import React, { Component } from 'react';
 import './UserProfile.css';
 class UserProfile extends Component {
+    state = {
+        firstName: '',
+        lastName: '',
+        userName: '',
+        email: '',
+        passWord: '',
+        passWordConfirm: ''
+    }
+    handleChangeValue = (event) => {
+        let { name, value } = event.target;
+        this.setState({
+            [name]: value
+        }, () => {
+            console.log(this.state);
+        })
+    }
     render() {
         return (
             <div className="container-fluid" style={{ backgroundColor: '#EEEEEE', display: 'flex', justifyContent: 'center' }}>
