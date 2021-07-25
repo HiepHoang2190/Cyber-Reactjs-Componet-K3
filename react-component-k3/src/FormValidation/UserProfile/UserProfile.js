@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './UserProfile.css';
+import Swal from 'sweetalert2'
 class UserProfile extends Component {
     state = {
         values: {
@@ -9,7 +10,6 @@ class UserProfile extends Component {
             email: '',
             passWord: '',
             passWordConfirm: '',
-            errFirstName: ''
         },
         errors: {
             firstName: '',
@@ -18,7 +18,6 @@ class UserProfile extends Component {
             email: '',
             passWord: '',
             passWordConfirm: '',
-            errFirstName: ''
         }
     }
     handleChangeValue = (event) => {
@@ -52,21 +51,57 @@ class UserProfile extends Component {
             errors: newErrors
         })
 
-        // Không nên xử lý setstate nhiều như ri vì các bất đồng bộ nhiều dễ xảy ra lỗi
-        // if (value === '') {
-        //     this.setState({
-        //         errors: { ...this.state.errors, [name]: 'Không được bỏ trống' }
-        //     })
-        // } else {
-        //     this.setState({
-        //         errors: { ...this.state.errors, [name]: '' }
-        //     })
-        // }
+    }
+    handleSubmit = (event) => {
+        // Cản trình duyệt reload lại trang
+        event.preventDefault();
+        // Xét điều kiện submit
+        let { values, errors } = this.state;
+        // Biến xác định form hợp lệ
+        let valid = true;
+        let profileContent = '';
+        let errorsContent = '';
+        for (let key in values) {
+            if (values[key] === '') {
+                valid = false;
+                errorsContent += `
+                <p class="text-left"> <b class="text-danger">${key} is invalid!</b></p>`;
+                valid = false;
+            }
+            profileContent += `
+            <p class="text-left"> <b>${key}:</b> ${values[key]}</p>
+        `
+        }
+
+        for (let key in errors) {
+            if (errors[key] !== '') {
+                errorsContent += `
+                <p class="text-left"> <b class="text-danger">${key} is invalid!</b></p>`;
+                valid = false;
+            }
+        }
+        if (!valid) {
+            Swal.fire({
+                title: 'Your profile!',
+                html: errorsContent,
+                icon: 'error', //success, error, warning, question
+                confirmButtonText: 'OK'
+            })
+            // alert('Dữ liệu chưa hợp lệ');
+            return;
+        }
+        // alert('Thành công');
+        Swal.fire({
+            title: 'Your profile!',
+            html: profileContent,
+            icon: 'success', //success, error, warning, question
+            confirmButtonText: 'OK'
+        })
     }
     render() {
         return (
             <div className="container-fluid" style={{ backgroundColor: '#EEEEEE', display: 'flex', justifyContent: 'center' }}>
-                <form style={{ fontSize: 'font-family: "Google Sans", "Noto Sans Myanmar UI", arial, sans-serif', width: 600 }} className=" bg-white p-5 m-5" >
+                <form onSubmit={this.handleSubmit} style={{ fontSize: 'font-family: "Google Sans", "Noto Sans Myanmar UI", arial, sans-serif', width: 600 }} className=" bg-white p-5 m-5" >
                     <h1 className="text-center mt-0 mb-5">User Profile</h1>
                     <div className="row">
                         <div className="col-6">
