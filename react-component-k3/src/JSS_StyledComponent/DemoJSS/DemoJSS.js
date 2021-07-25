@@ -5,7 +5,8 @@ class DemoJSS extends Component {
     render() {
         return (
             <div>
-                <Button className="button_style" >Hello Hiệp</Button>
+                <Button className="button_style" bgPrimary fontSize2x >Hello Hiệp</Button>
+
             </div>
         );
     }
