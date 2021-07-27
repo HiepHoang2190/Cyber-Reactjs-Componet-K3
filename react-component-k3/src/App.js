@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import UserProfile from './FormValidation/UserProfile/UserProfile';
 import DemoJSS from './JSS_StyledComponent/DemoJSS/DemoJSS';
+import DemoTheme from './JSS_StyledComponent/Theme/DemoTheme';
+
+
 
 class App extends Component {
   render() {
     return (
       <div>
         {/* <UserProfile /> */}
-        <DemoJSS />
+        {/* <DemoJSS /> */}
+        <DemoTheme />
       </div>
     );
   }
