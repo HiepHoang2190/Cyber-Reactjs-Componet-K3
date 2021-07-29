@@ -9,11 +9,35 @@ import { ToDoListLightTheme } from '../../Theme/ToDoListLightTheme';
 import { ToDoListPrimaryTheme } from '../../Theme/ToDoListPrimaryTheme';
 import { Button } from '../../ComponentsToDoList/Button';
 import { Table, Tr, Td, Th, Thead, Tbody } from '../../ComponentsToDoList/Table';
+import { connect } from 'react-redux';
 class ToDoList extends Component {
+
+    renderTaskToDo = () => {
+        return this.props.taskList.filter(task => task.done).map((task, index) => {
+            return <Tr key={index}>
+                <Th style={{ verticalAlign: 'middle' }}>{task.taskName}</Th>
+                <Th className="text-right">
+                    <Button className="ml-1"><i className="fa fa-edit"></i></Button>
+                    <Button className="ml-1"><i className="fa fa-check"></i></Button>
+                    <Button className="ml-1"><i className="fa fa-trash"></i></Button>
+                </Th>
+            </Tr>
+        })
+    }
+    renderTaskCompleted = () => {
+        return this.props.taskList.filter(task => !task.done).map((task, index) => {
+            return <Tr key={index}>
+                <Th style={{ verticalAlign: 'middle' }}>{task.taskName}</Th>
+                <Th className="text-right">
+                    <Button className="ml-1"><i className="fa fa-trash"></i></Button>
+                </Th>
+            </Tr>
+        })
+    }
     render() {
         return (
             <div>
-                <ThemeProvider theme={ToDoListDarkTheme}>
+                <ThemeProvider theme={this.props.themeToDoList}>
                     <Container className="w-50">
                         <Dropdown>
                             <option>Dark theme</option>
@@ -31,39 +55,13 @@ class ToDoList extends Component {
                         <Heading3>Task to do</Heading3>
                         <Table>
                             <Thead>
-                                <Tr>
-                                    <Th style={{ verticalAlign: 'middle' }}>Task name</Th>
-                                    <Th className="text-right">
-                                        <Button className="ml-1"><i className="fa fa-edit"></i></Button>
-                                        <Button className="ml-1"><i className="fa fa-check"></i></Button>
-                                        <Button className="ml-1"><i className="fa fa-trash"></i></Button>
-                                    </Th>
-                                </Tr>
-                                <Tr>
-                                    <Th style={{ verticalAlign: 'middle' }}>Task name</Th>
-                                    <Th className="text-right">
-                                        <Button className="ml-1"><i className="fa fa-edit"></i></Button>
-                                        <Button className="ml-1"><i className="fa fa-check"></i></Button>
-                                        <Button className="ml-1"><i className="fa fa-trash"></i></Button>
-                                    </Th>
-                                </Tr>
+                                {this.renderTaskToDo()}
                             </Thead>
                         </Table>
                         <Heading3>Task completed</Heading3>
                         <Table>
                             <Thead>
-                                <Tr>
-                                    <Th style={{ verticalAlign: 'middle' }}>Task name</Th>
-                                    <Th className="text-right">
-                                        <Button className="ml-1"><i className="fa fa-trash"></i></Button>
-                                    </Th>
-                                </Tr>
-                                <Tr>
-                                    <Th style={{ verticalAlign: 'middle' }}>Task name</Th>
-                                    <Th className="text-right">
-                                        <Button className="ml-1"><i className="fa fa-trash"></i></Button>
-                                    </Th>
-                                </Tr>
+                                {this.renderTaskCompleted()}
                             </Thead>
                         </Table>
                     </Container>
@@ -74,4 +72,12 @@ class ToDoList extends Component {
     }
 }
 
-export default ToDoList;
+
+const mapStateToProps = (state) => {
+    return {
+        themeToDoList: state.ToDoListReducer.themeToDoList,
+        taskList: state.ToDoListReducer.taskList
+    }
+}
+
+export default connect(mapStateToProps)(ToDoList);
