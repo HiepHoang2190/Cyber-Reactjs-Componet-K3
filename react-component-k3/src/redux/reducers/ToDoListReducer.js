@@ -1,8 +1,7 @@
 import { ToDoListDarkTheme } from "../../JSS_StyledComponent/Theme/ToDoListDarkTheme"
 import { ToDoListLightTheme } from '../../JSS_StyledComponent/Theme/ToDoListLightTheme';
 import { ToDoListPrimaryTheme } from '../../JSS_StyledComponent/Theme/ToDoListPrimaryTheme';
-import { add_task } from "../types/ToDoListTypes";
-import { change_theme } from "../types/ToDoListTypes";
+import { add_task, change_theme, done_task, delete_task } from "../types/ToDoListTypes";
 import { arrTheme } from '../../JSS_StyledComponent/Theme/ThemeManager';
 
 const initialState = {
@@ -42,12 +41,39 @@ export default (state = initialState, action) => {
             // console.log(action)
             // Tìm theme dựa vào action.themeId được chọn
             let theme = arrTheme.find(theme => theme.id == action.themeId);
-            console.log(theme);
+            // console.log(theme);
             if (theme) {
                 // set lại theme cho state.themeToDoList
                 state.themeToDoList = { ...theme.theme }
             }
             return { ...state }
+        }
+        case done_task: {
+            console.log(action);
+            // Click vào button check => dispatch lên action có taskId
+            let taskListUpdate = [...state.taskList];
+            // Từ task id tìm ra task đó ở vị trí nào trong mảng tiến hành cập nhật lại thuộc tính done=true
+            //  Và cập nhật lại state của redux
+            let index = taskListUpdate.findIndex(task => task.id === action.taskId);
+            if (index !== -1) {
+                taskListUpdate[index].done = true;
+            }
+
+            // state.taskList = taskListUpdate;
+            // return { ...state }
+
+            //  ghi lại kiểu rút gọn
+            return { ...state, taskList: taskListUpdate }
+        }
+        case delete_task: {
+            let taskListUpdate = [...state.taskList];
+
+            // Gán lại giá trị cho mảng taskListUpdate chính nó nhưng filter không có taskId đó
+            taskListUpdate = taskListUpdate.filter(task => task.id !== action.taskId);
+            return { ...state, taskList: taskListUpdate }
+
+            // Cách viết gọn hơn, chỉ 1 dòng
+            // return { ...state, taskList: state.taskList.filter(task => task.id !== action.taskId) }
         }
 
         default:

@@ -10,7 +10,7 @@ import { ToDoListPrimaryTheme } from '../../Theme/ToDoListPrimaryTheme';
 import { Button } from '../../ComponentsToDoList/Button';
 import { Table, Tr, Td, Th, Thead, Tbody } from '../../ComponentsToDoList/Table';
 import { connect } from 'react-redux';
-import { addTaskAction, changeThemeAction } from '../../../redux/actions/ToDoListActions';
+import { addTaskAction, changeThemeAction, deleteTaskAction, doneTaskAction } from '../../../redux/actions/ToDoListActions';
 import { arrTheme } from '../../../JSS_StyledComponent/Theme/ThemeManager'
 class ToDoList extends Component {
     state = {
@@ -23,8 +23,12 @@ class ToDoList extends Component {
                 <Th style={{ verticalAlign: 'middle' }}>{task.taskName}</Th>
                 <Th className="text-right">
                     <Button className="ml-1"><i className="fa fa-edit"></i></Button>
-                    <Button className="ml-1"><i className="fa fa-check"></i></Button>
-                    <Button className="ml-1"><i className="fa fa-trash"></i></Button>
+                    <Button onClick={() => {
+                        this.props.dispatch(doneTaskAction(task.id))
+                    }} className="ml-1"><i className="fa fa-check"></i></Button>
+                    <Button onClick={() => {
+                        this.props.dispatch(deleteTaskAction(task.id))
+                    }} className="ml-1"><i className="fa fa-trash"></i></Button>
                 </Th>
             </Tr>
         })
@@ -34,7 +38,9 @@ class ToDoList extends Component {
             return <Tr key={index}>
                 <Th style={{ verticalAlign: 'middle' }}>{task.taskName}</Th>
                 <Th className="text-right">
-                    <Button className="ml-1"><i className="fa fa-trash"></i></Button>
+                    <Button onClick={() => {
+                        this.props.dispatch(deleteTaskAction(task.id))
+                    }} className="ml-1"><i className="fa fa-trash"></i></Button>
                 </Th>
             </Tr>
         })
