@@ -3,6 +3,7 @@ import UserProfile from './FormValidation/UserProfile/UserProfile';
 import ToDoList from './JSS_StyledComponent/BaiTapStyledComponent/ToDoList/ToDoList';
 import DemoJSS from './JSS_StyledComponent/DemoJSS/DemoJSS';
 import DemoTheme from './JSS_StyledComponent/Theme/DemoTheme';
+import LifeCycleReact from './LifeCycleReact/LifeCycleReact';
 
 
 
@@ -13,7 +14,8 @@ class App extends Component {
         {/* <UserProfile /> */}
         {/* <DemoJSS /> */}
         {/* <DemoTheme /> */}
-        <ToDoList />
+        {/* <ToDoList /> */}
+        <LifeCycleReact />
       </div>
     );
   }
