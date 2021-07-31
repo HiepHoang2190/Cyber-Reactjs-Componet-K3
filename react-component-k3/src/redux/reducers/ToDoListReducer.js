@@ -1,7 +1,7 @@
 import { ToDoListDarkTheme } from "../../JSS_StyledComponent/Theme/ToDoListDarkTheme"
 import { ToDoListLightTheme } from '../../JSS_StyledComponent/Theme/ToDoListLightTheme';
 import { ToDoListPrimaryTheme } from '../../JSS_StyledComponent/Theme/ToDoListPrimaryTheme';
-import { add_task, change_theme, done_task, delete_task, edit_task } from "../types/ToDoListTypes";
+import { add_task, change_theme, done_task, delete_task, edit_task, update_task } from "../types/ToDoListTypes";
 import { arrTheme } from '../../JSS_StyledComponent/Theme/ThemeManager';
 
 const initialState = {
@@ -78,6 +78,21 @@ export default (state = initialState, action) => {
         }
         case edit_task: {
             return { ...state, taskEdit: action.task }
+        }
+        case update_task: {
+            console.log(action)
+            // Chỉnh sửa lại taskName của taskEdit
+            state.taskEdit = { ...state.taskEdit, taskName: action.taskName };
+            // Tìm trong taskLisst cập nhật lại taskEdit người dùng update
+            let taskListUpdate = [...state.taskList];
+
+            let index = taskListUpdate.findIndex(task => task.id === state.taskEdit.id);
+            console.log(index);
+            if (index !== -1) {
+                taskListUpdate[index] = state.taskEdit;
+            }
+            state.taskList = taskListUpdate;
+            return { ...state };
         }
 
         default:
