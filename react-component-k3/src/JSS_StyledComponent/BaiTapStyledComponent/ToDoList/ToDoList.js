@@ -63,6 +63,14 @@ class ToDoList extends Component {
             </option>
         })
     }
+    // Life cycle bảng 16 nhận vào props mới được thực thi trước render
+    componentWillReceiveProps(newProps) {
+        console.log('this.props', this.props);
+        console.log('newProps', newProps);
+        this.setState({
+            taskName: newProps.taskEdit.taskName
+        })
+    }
     render() {
         return (
             <div>
@@ -85,7 +93,7 @@ class ToDoList extends Component {
                         <Heading3>To do list</Heading3>
                         {/* <Label>Task name</Label>
                         <Input></Input> */}
-                        <TextField value={this.props.taskEdit.taskName} onChange={(e) => {
+                        <TextField value={this.state.taskName} onChange={(e) => {
                             this.setState({
 
                                 // [e.target.name]:e.target.value   // cách ghi đầy đủ

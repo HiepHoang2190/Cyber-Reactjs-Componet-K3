@@ -14,8 +14,8 @@ class App extends Component {
         {/* <UserProfile /> */}
         {/* <DemoJSS /> */}
         {/* <DemoTheme /> */}
-        {/* <ToDoList /> */}
-        <LifeCycleReact />
+        <ToDoList />
+        {/* <LifeCycleReact /> */}
       </div>
     );
   }

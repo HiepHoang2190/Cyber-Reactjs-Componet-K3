@@ -3,7 +3,7 @@ import ChildComponent from './ChildComponent';
 
 class LifeCycleReact extends Component {
 
-    // Các dự án cũ :
+    // Các dự án cũ : constructor
     constructor(props) {
         super(props);
         this.state = {
