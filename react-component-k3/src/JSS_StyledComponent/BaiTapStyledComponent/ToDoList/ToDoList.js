@@ -10,7 +10,7 @@ import { ToDoListPrimaryTheme } from '../../Theme/ToDoListPrimaryTheme';
 import { Button } from '../../ComponentsToDoList/Button';
 import { Table, Tr, Td, Th, Thead, Tbody } from '../../ComponentsToDoList/Table';
 import { connect } from 'react-redux';
-import { addTaskAction, changeThemeAction, deleteTaskAction, doneTaskAction } from '../../../redux/actions/ToDoListActions';
+import { addTaskAction, changeThemeAction, deleteTaskAction, doneTaskAction, editTaskAction } from '../../../redux/actions/ToDoListActions';
 import { arrTheme } from '../../../JSS_StyledComponent/Theme/ThemeManager'
 class ToDoList extends Component {
     state = {
@@ -22,7 +22,9 @@ class ToDoList extends Component {
             return <Tr key={index}>
                 <Th style={{ verticalAlign: 'middle' }}>{task.taskName}</Th>
                 <Th className="text-right">
-                    <Button className="ml-1"><i className="fa fa-edit"></i></Button>
+                    <Button onClick={() => {
+                        this.props.dispatch(editTaskAction(task))
+                    }} className="ml-1"><i className="fa fa-edit"></i></Button>
                     <Button onClick={() => {
                         this.props.dispatch(doneTaskAction(task.id))
                     }} className="ml-1"><i className="fa fa-check"></i></Button>
@@ -83,7 +85,7 @@ class ToDoList extends Component {
                         <Heading3>To do list</Heading3>
                         {/* <Label>Task name</Label>
                         <Input></Input> */}
-                        <TextField onChange={(e) => {
+                        <TextField value={this.props.taskEdit.taskName} onChange={(e) => {
                             this.setState({
 
                                 // [e.target.name]:e.target.value   // cách ghi đầy đủ
@@ -134,7 +136,8 @@ class ToDoList extends Component {
 const mapStateToProps = (state) => {
     return {
         themeToDoList: state.ToDoListReducer.themeToDoList,
-        taskList: state.ToDoListReducer.taskList
+        taskList: state.ToDoListReducer.taskList,
+        taskEdit: state.ToDoListReducer.taskEdit
     }
 }
 
