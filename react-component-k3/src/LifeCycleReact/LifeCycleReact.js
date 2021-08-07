@@ -7,13 +7,17 @@ class LifeCycleReact extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            number: 1
+            number: 1,
+            product: {
+                id: 1,
+                name: 'iphonex'
+            }
         }
         console.log('constructor')
     }
     //Được gọi khi component này được sử dụng trên DOM (giao diện của app)
     static getDerivedStateFromProps(newProps, currentState) {
-        console.log('getDerivedStateFromProps')
+        // console.log('getDerivedStateFromProps')
         return null;
     }
     // Được gọi khi setState hoặc props
@@ -31,21 +35,33 @@ class LifeCycleReact extends Component {
                 <span>Number: {this.state.number}</span>
                 <button className="btn btn-success" onClick={() => {
                     this.setState({
-                        number: this.state.number += 1
+                        // number: this.state.number += 1
+                        number: this.state.number //bài 23
                     })
-                }}></button>
-                {this.state.number === 1 ? <ChildComponent /> : ''}
+                }}>+</button>
+                <button className="btn btn-success" onClick={() => {
+                    let newProduct = { ...this.state.product };
+                    newProduct.name = 'Samsung note 10 plus';
+                    this.setState({
+                        product: newProduct
+                    })
+                }}>change Name Product </button>
+
+                <h3> new Product parent: {this.state.product.name}
+                </h3>
+                <ChildComponent product={this.state.product} />
+                {/* {this.state.number === 1 ? <ChildComponent /> : ''} */}
 
             </div>
         );
     }
     // Được gọi sau render và chỉ gọi 1 lần duy nhất (trạng thái mounting)
     componentDidMount() {
-        console.log('componentDidMount')
+        // console.log('componentDidMount')
     }
     // Lần đầu sẽ không gọi, chỉ gọi khi setState  hoặc thay đổi props
     componentDidUpdate() {
-        console.log('componentDidUpdate')
+        // console.log('componentDidUpdate')
     }
 }
 
