@@ -5,6 +5,7 @@ import ToDoList from './JSS_StyledComponent/BaiTapStyledComponent/ToDoList/ToDoL
 import DemoJSS from './JSS_StyledComponent/DemoJSS/DemoJSS';
 import DemoTheme from './JSS_StyledComponent/Theme/DemoTheme';
 import LifeCycleReact from './LifeCycleReact/LifeCycleReact';
+import DemoHookUseEffect from './Hooks/DemoHookUseEffect';
 
 
 
@@ -17,7 +18,8 @@ class App extends Component {
         {/* <DemoTheme /> */}
         {/* <ToDoList /> */}
         {/* <LifeCycleReact /> */}
-        <DemoHookUseState />
+        {/* <DemoHookUseState /> */}
+        <DemoHookUseEffect />
       </div>
     );
   }
