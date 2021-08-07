@@ -14,7 +14,8 @@ import { addTaskAction, changeThemeAction, deleteTaskAction, doneTaskAction, edi
 import { arrTheme } from '../../../JSS_StyledComponent/Theme/ThemeManager'
 class ToDoList extends Component {
     state = {
-        taskName: ''
+        taskName: '',
+        disabled: true,
     }
 
     renderTaskToDo = () => {
@@ -23,7 +24,13 @@ class ToDoList extends Component {
                 <Th style={{ verticalAlign: 'middle' }}>{task.taskName}</Th>
                 <Th className="text-right">
                     <Button onClick={() => {
-                        this.props.dispatch(editTaskAction(task))
+                        // đây là bất đồng bộ, nên phải setState trước rồi dispatch để tránh lỗi
+                        this.setState({
+                            disabled: false
+                        }, () => {
+                            this.props.dispatch(editTaskAction(task))
+                        })
+
                     }} className="ml-1"><i className="fa fa-edit"></i></Button>
                     <Button onClick={() => {
                         this.props.dispatch(doneTaskAction(task.id))
@@ -130,9 +137,23 @@ class ToDoList extends Component {
                         }
 
                         } className="ml-2"><i className="fa fa-plus"></i> Add task</Button>
-                        <Button onClick={() => {
-                            this.props.dispatch(updateTask(this.state.taskName))
-                        }} className="ml-2"><i className="fa fa-upload"></i> Update task</Button>
+                        {
+                            this.state.disabled ? <Button disabled onClick={() => {
+                                this.props.dispatch(updateTask(this.state.taskName))
+                            }} className="ml-2"><i className="fa fa-upload"></i> Update task</Button> :
+                                <Button onClick={() => {
+                                    // Lưu trữ taskName vào biến trước khi setState.Khi setState thì taskName rỗng, còn dispatch đưa lên  taskName trước khi setState
+                                    let { taskName } = this.state;
+                                    this.setState({
+                                        disabled: true,
+                                        taskName: ''
+                                    }, () => {
+                                        this.props.dispatch(updateTask(taskName))
+                                    })
+
+                                }} className="ml-2"><i className="fa fa-upload"></i> Update task</Button>
+                        }
+
                         <hr />
                         <Heading3>Task to do</Heading3>
                         <Table>
