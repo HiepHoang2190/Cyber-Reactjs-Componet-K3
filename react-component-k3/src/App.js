@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import UserProfile from './FormValidation/UserProfile/UserProfile';
+import DemoHookUseState from './Hooks/DemoHookUseState';
 import ToDoList from './JSS_StyledComponent/BaiTapStyledComponent/ToDoList/ToDoList';
 import DemoJSS from './JSS_StyledComponent/DemoJSS/DemoJSS';
 import DemoTheme from './JSS_StyledComponent/Theme/DemoTheme';
@@ -15,7 +16,8 @@ class App extends Component {
         {/* <DemoJSS /> */}
         {/* <DemoTheme /> */}
         {/* <ToDoList /> */}
-        <LifeCycleReact />
+        {/* <LifeCycleReact /> */}
+        <DemoHookUseState />
       </div>
     );
   }
