@@ -6,6 +6,7 @@ import DemoJSS from './JSS_StyledComponent/DemoJSS/DemoJSS';
 import DemoTheme from './JSS_StyledComponent/Theme/DemoTheme';
 import LifeCycleReact from './LifeCycleReact/LifeCycleReact';
 import DemoHookUseEffect from './Hooks/DemoHookUseEffect';
+import DemoHookUseCallBack from './Hooks/DemoHookUseCallBack';
 
 
 
@@ -19,7 +20,8 @@ class App extends Component {
         {/* <ToDoList /> */}
         {/* <LifeCycleReact /> */}
         {/* <DemoHookUseState /> */}
-        <DemoHookUseEffect />
+        {/* <DemoHookUseEffect /> */}
+        <DemoHookUseCallBack />
       </div>
     );
   }
