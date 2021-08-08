@@ -12,6 +12,7 @@ import DemoUseRef from './Hooks/DemoUseRef';
 import DemoUseReducer from './Hooks/DemoUseReducer';
 import DemoUseContext from './Hooks/DemoUseContext';
 import ContextProvider from './Hooks/Context/ContextProvider';
+import DemoReduxApp from './Hooks/DemoReduxApp';
 
 
 
@@ -30,7 +31,8 @@ class App extends Component {
         {/* <DemoHookUseMemo /> */}
         {/* <DemoUseRef /> */}
         {/* <DemoUseReducer /> */}
-        <DemoUseContext />
+        {/* <DemoUseContext /> */}
+        <DemoReduxApp />
       </ContextProvider>
     );
   }
