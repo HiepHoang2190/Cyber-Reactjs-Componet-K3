@@ -8,6 +8,7 @@ import LifeCycleReact from './LifeCycleReact/LifeCycleReact';
 import DemoHookUseEffect from './Hooks/DemoHookUseEffect';
 import DemoHookUseCallBack from './Hooks/DemoHookUseCallBack';
 import DemoHookUseMemo from './Hooks/DemoHookUseMemo';
+import DemoUseRef from './Hooks/DemoUseRef';
 
 
 
@@ -23,7 +24,8 @@ class App extends Component {
         {/* <DemoHookUseState /> */}
         {/* <DemoHookUseEffect /> */}
         {/* <DemoHookUseCallBack /> */}
-        <DemoHookUseMemo />
+        {/* <DemoHookUseMemo /> */}
+        <DemoUseRef />
       </div>
     );
   }
