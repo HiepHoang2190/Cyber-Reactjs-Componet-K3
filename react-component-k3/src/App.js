@@ -10,13 +10,15 @@ import DemoHookUseCallBack from './Hooks/DemoHookUseCallBack';
 import DemoHookUseMemo from './Hooks/DemoHookUseMemo';
 import DemoUseRef from './Hooks/DemoUseRef';
 import DemoUseReducer from './Hooks/DemoUseReducer';
+import DemoUseContext from './Hooks/DemoUseContext';
+import ContextProvider from './Hooks/Context/ContextProvider';
 
 
 
 class App extends Component {
   render() {
     return (
-      <div>
+      <ContextProvider>
         {/* <UserProfile /> */}
         {/* <DemoJSS /> */}
         {/* <DemoTheme /> */}
@@ -27,8 +29,9 @@ class App extends Component {
         {/* <DemoHookUseCallBack /> */}
         {/* <DemoHookUseMemo /> */}
         {/* <DemoUseRef /> */}
-        <DemoUseReducer />
-      </div>
+        {/* <DemoUseReducer /> */}
+        <DemoUseContext />
+      </ContextProvider>
     );
   }
 }
