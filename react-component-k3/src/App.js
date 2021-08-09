@@ -13,6 +13,7 @@ import DemoUseReducer from './Hooks/DemoUseReducer';
 import DemoUseContext from './Hooks/DemoUseContext';
 import ContextProvider from './Hooks/Context/ContextProvider';
 import DemoReduxApp from './Hooks/DemoReduxApp';
+import DemoUseSpring from './Hooks/ReactSpring/DemoUseSpring';
 
 
 
@@ -32,7 +33,8 @@ class App extends Component {
         {/* <DemoUseRef /> */}
         {/* <DemoUseReducer /> */}
         {/* <DemoUseContext /> */}
-        <DemoReduxApp />
+        {/* <DemoReduxApp /> */}
+        <DemoUseSpring />
       </ContextProvider>
     );
   }
