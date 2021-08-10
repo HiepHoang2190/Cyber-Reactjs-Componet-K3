@@ -15,6 +15,7 @@ import ContextProvider from './Hooks/Context/ContextProvider';
 import DemoReduxApp from './Hooks/DemoReduxApp';
 import DemoUseSpring from './Hooks/ReactSpring/DemoUseSpring';
 import Ex2UseSpring from './Hooks/ReactSpring/Ex2UseSpring';
+import Ex3UseSpring from './Hooks/ReactSpring/Ex3UseSpring';
 
 
 
@@ -37,7 +38,8 @@ class App extends Component {
         {/* <DemoUseContext /> */}
         {/* <DemoReduxApp /> */}
         {/* <DemoUseSpring /> */}
-        <Ex2UseSpring />
+        {/* <Ex2UseSpring /> */}
+        <Ex3UseSpring />
       </ContextProvider>
     );
   }
