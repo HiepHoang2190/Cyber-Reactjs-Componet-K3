@@ -19,6 +19,7 @@ import Ex3UseSpring from './Hooks/ReactSpring/Ex3UseSpring';
 import Ex4UseTrail from './Hooks/ReactSpring/Ex4UseTrail';
 import Ex5UseTransition from './Hooks/ReactSpring/Ex5UseTransition';
 import Ex6UseChain from './Hooks/ReactSpring/Ex6UseChain';
+import BaiTapGameBauCua from './BaiTapTongHop/BaiTapGameBauCua/BaiTapGameBauCua';
 
 
 
@@ -46,7 +47,8 @@ class App extends Component {
         {/* <Ex3UseSpring /> */}
         {/* <Ex4UseTrail /> */}
         {/* <Ex5UseTransition /> */}
-        <Ex6UseChain />
+        {/* <Ex6UseChain /> */}
+        <BaiTapGameBauCua />
 
       </ContextProvider>
     );
