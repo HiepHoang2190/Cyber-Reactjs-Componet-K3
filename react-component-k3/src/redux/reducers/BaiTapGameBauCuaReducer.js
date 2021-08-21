@@ -41,6 +41,7 @@ export default (state = initialState, action) => {
             }
 
             state.danhSachCuoc = danhSachCuocUpdate;
+            return { ...state }
         }
 
         case 'PLAY_GAME_BAU_CUA': {
@@ -55,7 +56,17 @@ export default (state = initialState, action) => {
             }
             //    Cập nhật lại mảng xúc xắc satate.mangXucXac = mangXucXacNgauNhien
             state.mangXucXac = mangXucXacNgauNhien;
-            console.log(' state.mangXucXac', state.mangXucXac)
+            // console.log(' state.mangXucXac', state.mangXucXac)
+
+            // Xử lý tăng điểm thưởng
+            mangXucXacNgauNhien.forEach((xucXacNN, index) => {
+
+                let indexDSCuoc = state.danhSachCuoc.findIndex(qc => qc.ma === xucXacNN.ma);
+
+                if (indexDSCuoc !== -1) {
+                    state.tongDiem += state.danhSachCuoc[indexDSCuoc].diemCuoc;
+                }
+            })
             return { ...state };
         }
 
