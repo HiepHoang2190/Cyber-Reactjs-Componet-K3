@@ -22,7 +22,7 @@ export default (state = initialState, action) => {
     switch (action.type) {
 
         case 'DAT_CUOC_BAU_CUA': {
-            // console.log('action',action)
+
             //Tìm trong danhSachCuoc => quân cược nào được click sẽ tăng hoặc giảm điểm
             const danhSachCuocUpdate = [...state.danhSachCuoc];
             const index = danhSachCuocUpdate.findIndex(qc => qc.ma === action.quanCuoc.ma);
@@ -41,6 +41,22 @@ export default (state = initialState, action) => {
             }
 
             state.danhSachCuoc = danhSachCuocUpdate;
+        }
+
+        case 'PLAY_GAME_BAU_CUA': {
+            console.log('action', action)
+            const mangXucXacNgauNhien = [];
+
+            for (let i = 0; i < 3; i++) {
+                //    Tạo ra 1 số ngẫu nhiên từ 0 -> 5
+                let soNgauNhien = Math.floor(Math.random() * 6);
+                const xucXacNgauNhien = state.danhSachCuoc[soNgauNhien];
+                mangXucXacNgauNhien.push(xucXacNgauNhien);
+            }
+            //    Cập nhật lại mảng xúc xắc satate.mangXucXac = mangXucXacNgauNhien
+            state.mangXucXac = mangXucXacNgauNhien;
+            console.log(' state.mangXucXac', state.mangXucXac)
+            return { ...state };
         }
 
         default:
